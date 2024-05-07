@@ -238,5 +238,7 @@ class PatternSearch {
         System.out.println(isAnagram(txt, pat, len1, len2));
         System.out.println();
 
+        sc.close();
+
     }
 }
