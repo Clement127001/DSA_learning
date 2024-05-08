@@ -18,6 +18,9 @@ class LinkedList {
     // a-> insert at beginning
     // b-> insert at end
     // c-> insert at given position
+    // 4 -> deletion
+    // a-> delete from the beginning
+    // b-> delete from the end
 
     public static void traverseList(Node temp) {
         // traversing the node
@@ -93,6 +96,31 @@ class LinkedList {
         return head;
     }
 
+    // delete operation
+    // 1-> delete from beginning
+    public static Node deleteFromBeginning(Node head) {
+        if (head == null)
+            return null;
+
+        else
+            return head.next;
+    }
+
+    // 2-> delete from end
+    public static Node deleteFromEnd(Node head) {
+        // when there is no element or there is only on element -> return null
+        if (head == null || head.next == null)
+            return null;
+
+        Node curr = head;
+        while (curr.next.next != null)
+            curr = curr.next;
+
+        curr.next = null;
+
+        return head;
+    }
+
     public static void main(String[] args) {
         // creating the three linked list to contain data 10 -> 20 -> 30 -> null
 
@@ -116,11 +144,14 @@ class LinkedList {
         // insert at end
         head = insertAtEnd(10, head);
         head = insertAtEnd(20, head);
-        // head = insertAtEnd(30, head);
-        // head = insertAtEnd(40, head);
+        head = insertAtEnd(30, head);
+        head = insertAtEnd(40, head);
 
         // insert at any given position
-        head = insertAtPos(30, head, 3);
+        // head = insertAtPos(30, head, 3);
+
+        head = deleteFromBeginning(head);
+        head = deleteFromEnd(head);
 
         traverseList(head);
 
