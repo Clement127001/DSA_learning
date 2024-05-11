@@ -18,9 +18,10 @@ class LinkedList {
     // a-> insert at beginning
     // b-> insert at end
     // c-> insert at given position
-    // 4 -> deletion
+    // 4-> deletion
     // a-> delete from the beginning
     // b-> delete from the end
+    // 5-> search the given node
 
     public static void traverseList(Node temp) {
         // traversing the node
@@ -102,8 +103,7 @@ class LinkedList {
         if (head == null)
             return null;
 
-        else
-            return head.next;
+        return head.next;
     }
 
     // 2-> delete from end
@@ -119,6 +119,40 @@ class LinkedList {
         curr.next = null;
 
         return head;
+    }
+
+    // 5-> search the given node
+    // iterative solution
+    public static int searchNode(Node head, int elem) {
+        Node curr = head;
+        int pos = 1;
+
+        while (curr != null) {
+            if (curr.data == elem)
+                return pos;
+
+            else {
+                curr = curr.next;
+                pos++;
+            }
+        }
+
+        return -1;
+    }
+
+    // recursive solution
+    public static int searchNodeRec(Node head, int elem) {
+        if (head == null)
+            return -1;
+
+        else if (head.data == elem)
+            return 1;
+
+        else {
+            int res = searchNodeRec(head.next, elem);
+
+            return res == -1 ? -1 : (res + 1);
+        }
     }
 
     public static void main(String[] args) {
@@ -147,13 +181,15 @@ class LinkedList {
         head = insertAtEnd(30, head);
         head = insertAtEnd(40, head);
 
+        System.out.println("The element 50 present at position : " + searchNodeRec(head, 50));
+
         // insert at any given position
         // head = insertAtPos(30, head, 3);
 
-        head = deleteFromBeginning(head);
-        head = deleteFromEnd(head);
+        // head = deleteFromBeginning(head);
+        // head = deleteFromEnd(head);
 
-        traverseList(head);
+        // traverseList(head);
 
         System.out.println();
 
