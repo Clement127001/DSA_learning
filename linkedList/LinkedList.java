@@ -155,6 +155,19 @@ class LinkedList {
         }
     }
 
+    public static Node reverseList(Node head) {
+        Node prev = null, curr = head;
+
+        while (curr != null) {
+            Node after = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = after;
+        }
+
+        return prev;
+    }
+
     public static void main(String[] args) {
         // creating the three linked list to contain data 10 -> 20 -> 30 -> null
 
@@ -181,7 +194,16 @@ class LinkedList {
         head = insertAtEnd(30, head);
         head = insertAtEnd(40, head);
 
-        System.out.println("The element 50 present at position : " + searchNodeRec(head, 50));
+        head = reverseList(head);
+
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " -> ");
+            curr = curr.next;
+        }
+
+        // System.out.println("The element 50 present at position : " +
+        // searchNodeRec(head, 50));
 
         // insert at any given position
         // head = insertAtPos(30, head, 3);

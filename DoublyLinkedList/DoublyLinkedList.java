@@ -25,12 +25,34 @@ class DoublyLinkedList {
     public static Node insertAtBeginning(Node head, int data) {
         Node temp = new Node(data);
 
-        temp.next = head;
+        if (head == null)
+            return temp;
 
-        if (head != null)
-            head.prev = temp;
+        temp.next = head;
+        head.prev = temp;
 
         return temp;
+    }
+
+    public static Node reverseList(Node head) {
+        Node prev = null, curr = head;
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        while (curr != null) {
+            Node after = curr.next;
+
+            // the only change in double linked list reversal is just altering the two ref
+            // instead of one
+            curr.prev = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = after;
+        }
+
+        return prev;
     }
 
     public static void main(String[] args) {
@@ -49,6 +71,8 @@ class DoublyLinkedList {
         head = insertAtBeginning(head, 10);
         head = insertAtBeginning(head, 20);
         head = insertAtBeginning(head, 30);
+
+        head = reverseList(head);
 
         System.out.println("Successfully created doubly linked list :)");
         traverseList(head);
